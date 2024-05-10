@@ -105,7 +105,7 @@ const Page = () => {
         >
           Invite your friends using your link and earn ~10% of any Beans they
           BAKE and 1% of Re-BAKES. Referral Rewards are additional and are not
-          deducted from your friends' beans.
+          deducted from your friends beans.
         </p>
       </div>
     </div>
