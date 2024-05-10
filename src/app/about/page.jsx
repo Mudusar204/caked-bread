@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Monomaniac_One, Exo } from "next/font/google";
 const monomaniacOne = Monomaniac_One({ subsets: ["latin"], weight: "400" });
-const page = () => {
+const Page = () => {
   const [linkTitle, setLinkTitle] = useState([
     "Dapp website",
     "Telegram portal",
@@ -62,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

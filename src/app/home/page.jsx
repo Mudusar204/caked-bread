@@ -4,7 +4,7 @@ import { Monomaniac_One, Exo, Montserrat } from "next/font/google";
 const monomaniacOne = Monomaniac_One({ subsets: ["latin"], weight: "400" });
 const montserrat = Montserrat({ subsets: ["cyrillic"], weight: "500" });
 const exo = Exo({ subsets: ["latin"], weight: "700" });
-const page = () => {
+const Page = () => {
   const [performance, setPerformance] = useState([
     "25%",
     "50%",
@@ -112,4 +112,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
