@@ -37,7 +37,7 @@ const Page = () => {
       {linkTitle.map((title, index) => (
         <div
           key={index}
-          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%] border border-[#FDF8DF] py-[10px] rounded-md bg-[#DF8B24] "
+          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%] border border-[#FDF8DF] py-[10px] rounded-md bg-[#DF8B24] hover:bg-[#523129] cursor-pointer"
         >
           <Image
             height={48}

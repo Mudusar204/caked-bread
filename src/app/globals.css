@@ -18,3 +18,23 @@
     background-position: 87% screen;
   }
 } */
+
+.coin {
+  transition: transform 2s;
+}
+
+.flip {
+  animation: flip 2s;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
