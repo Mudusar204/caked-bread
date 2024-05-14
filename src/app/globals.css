@@ -20,11 +20,11 @@
 } */
 
 .coin {
-  transition: transform 2s;
+  transition: transform 1s;
 }
 
 .flip {
-  animation: flip 2s;
+  animation: flip 1s;
 }
 
 @keyframes flip {
