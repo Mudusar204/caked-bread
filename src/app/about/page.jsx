@@ -27,12 +27,12 @@ const Page = () => {
         RETURNS
       </p>
       <div className="flex justify-center items-center gap-3 my-[20px]">
-        <Image height={36} width={36} src={"/telegram.svg"} />
-        <Image height={25} width={25} src={"/twitter.svg"} />
-        <Image height={34} width={34} src={"/youtube.svg"} />
-        <Image height={30} width={30} src={"/instagram.svg"} />
-        <Image height={36} width={36} src={"/facebook.svg"} />
-        <Image height={32} width={32} src={"/gmail.svg"} />
+        <Image height={36} width={36} src={"/telegram.svg"} alt="telegram" />
+        <Image height={25} width={25} src={"/twitter.svg"} alt="twitter" />
+        <Image height={34} width={34} src={"/youtube.svg"} alt="youtube" />
+        <Image height={30} width={30} src={"/instagram.svg"} alt="instagram" />
+        <Image height={36} width={36} src={"/facebook.svg"} alt="facebook" />
+        <Image height={32} width={32} src={"/gmail.svg"} alt="gmail" />
       </div>
       {linkTitle.map((title, index) => (
         <div
@@ -44,6 +44,7 @@ const Page = () => {
             width={48}
             className="max-sm:w-[31px] max-sm:h-[31px] max-lg:w-[40px] max-lg:h-[40px]"
             src={"/logo.svg"}
+            alt="logo"
           ></Image>
           <button
             key={index}

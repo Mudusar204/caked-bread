@@ -17,6 +17,7 @@ const Navbar = () => {
         width={145}
         className="max-sm:w-[68px] max-sm:h-[68px] max-lg:w-[100px] max-lg:h-[100px]"
         src={"/logo.svg"}
+        alt="logo"
       ></Image>
       <button
         onClick={() => open()}
