@@ -37,7 +37,7 @@ const Page = () => {
       {linkTitle.map((title, index) => (
         <div
           key={index}
-          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%] border border-[#FDF8DF] py-[10px] rounded-md bg-[#DF8B24] hover:bg-[#523129] cursor-pointer"
+          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] hover:bg-[#523129] cursor-pointer"
         >
           <Image
             height={48}
@@ -58,7 +58,7 @@ const Page = () => {
       ))}
       <div className="flex justify-center">
         <button className="flex justify-center gap-10 items-center mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] xl:w-[80%]  py-[10px] rounded-[50px] bg-[#523129B5]/90 hover:bg-[#523129B5]/70 ">
-          <Image height={29} width={29} src={"/linktree.svg"} />
+          <Image height={29} width={29} src={"/linktree.svg"} alt="linktree" />
           <p className=""> Create your Linktree </p>
         </button>
       </div>

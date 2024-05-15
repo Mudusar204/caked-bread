@@ -44,7 +44,7 @@ const Home = () => {
         ...prevGames,
         { predictedOutcome, winner: isWinner, gameCompleted: true },
       ]);
-    }, 1000); // Duration of the animation
+    }, 2000); // Duration of the animation
   };
 
   return (

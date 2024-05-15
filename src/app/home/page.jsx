@@ -4,7 +4,9 @@ import { Monomaniac_One, Exo, Montserrat } from "next/font/google";
 const monomaniacOne = Monomaniac_One({ subsets: ["latin"], weight: "400" });
 const montserrat = Montserrat({ subsets: ["cyrillic"], weight: "500" });
 const exo = Exo({ subsets: ["latin"], weight: "700" });
+import { useRouter } from "next/navigation";
 const Page = () => {
+  const router = useRouter();
   const [performance, setPerformance] = useState([
     "25%",
     "50%",
@@ -78,7 +80,10 @@ const Page = () => {
           eat bread
         </button>
       </div>
-      <button className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] ">
+      <button
+        onClick={() => router.push("/")}
+        className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] "
+      >
         Show coin flip
       </button>
       <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
