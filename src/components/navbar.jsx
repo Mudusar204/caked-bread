@@ -16,12 +16,9 @@ const Navbar = () => {
     try {
       if (isConnected && isSignUp) {
         toast.loading("Signing up...");
-        let res = await axios.post(
-          `${process.env.NEXT_AUTH_URL}/api/auth/signup`,
-          {
-            walletAddress: address,
-          }
-        );
+        let res = await axios.post(`/api/auth/signup`, {
+          walletAddress: address,
+        });
         console.log(res, "response");
         if (res.data.status === true) {
           toast.dismiss();
