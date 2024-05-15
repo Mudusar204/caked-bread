@@ -11,36 +11,33 @@ import toast from "react-hot-toast";
 const Navbar = () => {
   const { address, isConnected } = useAccount();
   const { open, close } = useWeb3Modal();
-  const [isSignup, setIsSignup] = useState(false);
-  useEffect(() => {
-    const signup = async () => {
-      try {
-        if (isConnected && isSignup) {
-          toast.loging("Signing up...");
-          let res = await axios.post(
-            `${process.env.NEXT_AUTH_URL}/api/auth/signup`,
-            {
-              walletAddress: address,
-            }
-          );
-          console.log(res, "response");
-          if (res.data.status === true) {
-            toast.dismiss();
-            toast.success(res.data.message);
-            console.log(res, "response");
-          } else {
-            throw new Error(res.data.message);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const signup = async () => {
+    try {
+      if (isConnected && isSignUp) {
+        toast.loading("Signing up...");
+        let res = await axios.post(
+          `${process.env.NEXT_AUTH_URL}/api/auth/signup`,
+          {
+            walletAddress: address,
           }
+        );
+        console.log(res, "response");
+        if (res.data.status === true) {
+          toast.dismiss();
+          toast.success(res.data.message);
+          console.log(res, "response");
+        } else {
+          throw new Error(res.data.message);
         }
-      } catch (error) {
-        toast.error(error);
-        console.error("Signup failed:", error);
       }
-    };
-
-    if (isConnected) {
-      signup();
+    } catch (error) {
+      toast.error(error);
+      console.error("Signup failed:", error);
     }
+  };
+  useEffect(() => {
+    signup();
   }, [isConnected, address]);
 
   return (
@@ -57,7 +54,7 @@ const Navbar = () => {
       ></Image>
       <button
         onClick={() => {
-          open(), setIsSignup(true);
+          open(), setIsSignUp(true);
         }}
         className={
           "bg-[#DF8B24] hover:bg-[#DF8B24]/90 text-[#f9eba7] font-sans font-[600px] text-[14px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] px-[20px] rounded-[50px]"
