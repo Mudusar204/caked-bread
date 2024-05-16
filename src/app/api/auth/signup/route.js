@@ -18,7 +18,7 @@ export const POST = async (request) => {
       });
     }
     let referralUser = null;
-    if (referralCode != null) {
+    if (referCode != null) {
       referralUser = await Users.findOne({ referralCode: referCode });
     }
     const referralCode = Math.floor(100000 + Math.random() * 900000).toString();
