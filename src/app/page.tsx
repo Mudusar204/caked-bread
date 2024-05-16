@@ -93,7 +93,7 @@ const Home = () => {
             return (
               <p
                 key={index}
-                className="text-[#FDF8DF] font-[700px] text-[20px] leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px]"
+                className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px]"
               >
                 {item}
               </p>
