@@ -7,19 +7,25 @@ import { NextResponse } from "next/server";
 export const POST = async (request) => {
   try {
     await dbConnect();
-    const { walletAddress } = await request.json();
-
+    const { walletAddress, referCode } = await request.json();
     // const hashedPassword = await bcrypt.hash(password, 10);
     let userExist = await Users.findOne({ walletAddress: walletAddress });
     if (userExist) {
       return NextResponse.json({
         status: true,
-        message: "User already exist",
-        data: "",
+        message: "Login success",
+        data: userExist,
       });
     }
+    let referralUser = null;
+    if (referralCode != null) {
+      referralUser = await Users.findOne({ referralCode: referCode });
+    }
+    const referralCode = Math.floor(100000 + Math.random() * 900000).toString();
     const newUser = new Users({
       walletAddress,
+      referralCode,
+      referredBy: referralUser?._id,
     });
 
     const res = await newUser.save();

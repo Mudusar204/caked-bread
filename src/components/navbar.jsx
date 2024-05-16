@@ -7,34 +7,73 @@ import { useAccount } from "wagmi";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 const Navbar = () => {
-  const { address, isConnected } = useAccount();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const searchParams = useSearchParams();
+  const code = searchParams.get("referralCode");
+  const { address, isConnected, isDisconnected } = useAccount();
   const { open, close } = useWeb3Modal();
   const [isSignUp, setIsSignUp] = useState(false);
+  useEffect(() => {
+    if (isDisconnected) {
+      localStorage.removeItem("user");
+      console.log("deleted");
+    }
+  }, [isDisconnected]);
+  useEffect(() => {
+    console.log(
+      router?.query?.referralCode,
+      "referralCode",
+      pathname,
+      "pathname",
+      searchParams,
+      "searchParams",
+      code,
+      "code"
+    );
+
+    if (code) {
+      localStorage.setItem(
+        "referralCode",
+        code != null && code != undefined ? code.toString() : ""
+      );
+      console.log(code, "referralCode has set");
+    }
+  }, [code]);
   const signup = async () => {
     try {
       if (isConnected && isSignUp) {
-        toast.loading("Signing up...");
+        const referCode = localStorage.getItem("referralCode");
+
+        toast.loading("Please wait...");
         let res = await axios.post(`/api/auth/signup`, {
           walletAddress: address,
+          referCode: referCode,
         });
         console.log(res, "response");
-        if (res.data.status === true) {
+        if (res?.data?.status === true) {
+          localStorage.setItem("user", JSON.stringify(res?.data?.data));
           toast.dismiss();
-          toast.success(res.data.message);
-          console.log(res, "response");
+          toast.success(res?.data?.message);
         } else {
-          throw new Error(res.data.message);
+          throw new Error(res?.data?.message);
         }
       }
     } catch (error) {
-      toast.error(error);
+      toast.dismiss();
+
+      toast.error(error?.message);
       console.error("Signup failed:", error);
     }
   };
   useEffect(() => {
-    signup();
+    if (isConnected) {
+      signup();
+    }
   }, [isConnected, address]);
 
   return (
@@ -51,7 +90,7 @@ const Navbar = () => {
       ></Image>
       <button
         onClick={() => {
-          open(), setIsSignUp(true);
+          open(), setIsSignUp(true), console.log("open");
         }}
         className={
           "bg-[#DF8B24] hover:bg-[#DF8B24]/90 text-[#f9eba7] font-sans font-[600px] text-[14px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] px-[20px] rounded-[50px]"
