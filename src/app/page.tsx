@@ -7,9 +7,9 @@ const exo = Exo({ subsets: ["latin"], weight: "700" });
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useAccount } from "wagmi";
-
 const Home = () => {
   const { isConnected, isDisconnected } = useAccount();
+
   const router = useRouter();
   const [performance, setPerformance] = useState([
     "25%",
@@ -18,14 +18,13 @@ const Home = () => {
     "100%",
     "MAX",
   ]);
-  // const user: any = localStorage.getItem("user");
-  // const parseUser: any = JSON.parse(user);
   //@ts-ignore
   const [referralInk, setReferralInk] = useState<any>("");
 
   useEffect(() => {
     if (isDisconnected) {
       setReferralInk("");
+      clearInterval(intervalId);
     }
   }, [isDisconnected]);
 

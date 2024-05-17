@@ -25,17 +25,6 @@ const Navbar = () => {
     }
   }, [isDisconnected]);
   useEffect(() => {
-    console.log(
-      router?.query?.referralCode,
-      "referralCode",
-      pathname,
-      "pathname",
-      searchParams,
-      "searchParams",
-      code,
-      "code"
-    );
-
     if (code) {
       localStorage.setItem(
         "referralCode",
