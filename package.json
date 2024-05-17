@@ -12,6 +12,7 @@
     "@tanstack/react-query": "^5.36.0",
     "@web3modal/wagmi": "^4.1.11",
     "axios": "^1.6.8",
+    "ethers": "^5.7.2",
     "mongodb": "^6.3.0",
     "mongoose": "^8.3.4",
     "next": "14.2.3",

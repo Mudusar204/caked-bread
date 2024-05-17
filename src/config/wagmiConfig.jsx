@@ -1,5 +1,4 @@
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
-
 import { cookieStorage, createStorage } from "wagmi";
 import {
   mainnet,
@@ -48,5 +47,5 @@ export const config = defaultWagmiConfig({
   enableWalletConnect: true,
   enableInjected: true,
   enableEIP6963: true,
-  enableCoinbase: true, // Optional - Override createConfig parameters
+  enableCoinbase: true,
 });
