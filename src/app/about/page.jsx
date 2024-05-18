@@ -16,7 +16,7 @@ const Page = () => {
     "marketing proposal",
   ]);
   return (
-    <div className="container max-sm:w-[90%] max-lg:w-[50%] max-md:w-[60%] w-[40%] mx-auto">
+    <div className="container flex flex-col item-center max-sm:w-[90%] max-lg:w-[50%] max-md:w-[60%] w-[40%] mx-auto">
       <p
         className={
           monomaniacOne.className +
@@ -37,7 +37,7 @@ const Page = () => {
       {linkTitle.map((title, index) => (
         <div
           key={index}
-          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] hover:bg-[#523129] cursor-pointer"
+          className="flex justify-between items-center px-4 mt-[10px] uppercase text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[100%]  py-[10px] rounded-md bg-[#DF8B24] hover:bg-[#523129] cursor-pointer"
         >
           <Image
             height={48}
