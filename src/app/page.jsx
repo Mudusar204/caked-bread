@@ -1,116 +1,180 @@
 "use client";
+// @ts-ignore
+// @ts-nocheck
 import React, { useState, useEffect, useContext } from "react";
 import { Monomaniac_One, Exo, Montserrat } from "next/font/google";
 const monomaniacOne = Monomaniac_One({ subsets: ["latin"], weight: "400" });
 const montserrat = Montserrat({ subsets: ["cyrillic"], weight: "500" });
 const exo = Exo({ subsets: ["latin"], weight: "700" });
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import { useAccount, useBalance } from "wagmi";
-import { useBreadContract } from "../config/Hooks";
-import { DataContext } from "../config/contextApi";
+import { useAccount, useBalance, useChainId, useSwitchChain } from "wagmi";
+import {
+  gasEstimationForAll,
+  gasEstimationPayable,
+  useBreadContract,
+} from "../config/Hooks";
+import { DataContext } from "../config/ContextAPI";
+import { useEthersProvider, useEthersSigner } from "../config/ethersAdapter";
+import { formatEther, parseEther } from "ethers/lib/utils";
 
 const Home = () => {
-  const { isConnected, isDisconnected, address } = useAccount();
-  const { loader } = useContext(DataContext);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [value, setValue] = useState("");
+  const { isConnected, address } = useAccount();
+  const { loader, setLoader } = useContext(DataContext);
   const [contractBalance, setContractBalance] = useState("");
   const [myBeans, setMyBeans] = useState("");
-  const router = useRouter();
-  const [value, setValue] = useState("");
-  const [performance, setPerformance] = useState([
-    "25%",
-    "50%",
-    "75%",
-    "100%",
-    "MAX",
-  ]);
+  const [balance, setBalance] = useState("");
+  const [reBake, setReBake] = useState("");
+  const [rewards, setRewards] = useState("");
+  const [reBakeTime, setReBakeTime] = useState("");
+
   //@ts-ignore
-  const [referralInk, setReferralInk] = useState<any>("");
+
+  // -==========================================================================
+  const signer = useEthersSigner();
+  const provider = useEthersProvider();
+  const Contract = useBreadContract();
+  const Contract1 = useBreadContract(signer);
+  const { chains, switchChain } = useSwitchChain();
+  const chainId = useChainId();
 
   useEffect(() => {
-    if (isDisconnected) {
-      setReferralInk("");
-      clearInterval(intervalId);
+    if (isConnected && chainId !== 97) {
+      toast.error("Switching to BSC Testnet");
+      switchChain(97);
     }
-  }, [isDisconnected]);
+  }, [isConnected, chainId, switchChain]);
 
-  function checkForUser(intervalId: any) {
-    console.log("function called!");
-
-    if (window.localStorage.getItem("user")) {
-      clearInterval(intervalId);
-      const userJson: any = window.localStorage.getItem("user");
-      const user = JSON.parse(userJson);
-      console.log(user, "user h");
-      setReferralInk(
-        `${window.location.protocol}//${window.location.host}?referralCode=${user?.referralCode}`
-      );
-      console.log("User has been detected!");
-    }
-  }
-  if (isConnected) {
-    var intervalId = setInterval(function () {
-      checkForUser(intervalId);
-    }, 1000);
-  }
-
-  const Contract = useBreadContract();
-  const walletbalance = useBalance({
-    address,
-  });
   useEffect(() => {
     async function FetchData() {
-      let Balance = await Contract.getBalance();
-      let myBeans = await Contract.getMyCakes(address);
+      let CBalance = await Contract.getBalance();
+      setContractBalance((+formatEther(CBalance.toString())).toFixed(5));
       let MyMiners = await Contract.getMyMiners(address);
-      console.log(myBeans.toString(), Balance.toString(), MyMiners.toString());
-      setContractBalance(Balance.toString());
-      setMyBeans(myBeans.toString());
+      setMyBeans((+formatEther(MyMiners.toString())).toFixed(5));
+      let balance = await provider.getBalance(address);
+      setBalance((+formatEther(balance.toString())).toFixed(5));
+      // rebake
+      let myCakes = await Contract.getMyCakes(address);
+
+      let myCakesValue = Math.floor(+myCakes.toString() / 1080000);
+      setReBake(myCakesValue.toString());
+      // rewards
+      let formatValue = myCakes.toString();
+      console.log(formatValue, "formatValue-=--=-=--=");
+      let rewardBreads = await Contract.calculateCakesSell(+formatValue);
+      setRewards(formatEther(rewardBreads));
+      // reBakeTime
+      let lastHatch = await Contract.lastHatch(address);
+      setReBakeTime(lastHatch.toString());
+      console.log(lastHatch, "lastHatch=-=--==-");
     }
     FetchData();
   }, [isConnected]);
 
   // CakedBread
-  // const CakedBreadHandler = async () => {
-  //   if (!isConnected) {
-  //     toast.error("Please connect Wallet");
-  //   } else if (value.trim() === "") {
-  //     toast.error("Please Enter Amount");
-  //   } else if (value === "0") {
-  //     toast.error("Please Enter Valid Amount");
-  //   } else {
-  //     try {
-  //       setLoader(true);
-  //       let fn = tokenContract1.estimateGas.approve;
-  //       let data = [contractAddress, ethers.constants.MaxUint256.toString()];
-  //       const tx = await tokenContract1.approve(...data, {
-  //         gasLimit: gasEstimationForAll(address.toString(), fn, data),
-  //       });
-  //       await tx.wait();
-  //       let fn1 = presaleContract.estimateGas.sell;
-  //       let data1 = [parseUnits(value.toString())];
-  //       const tx1 = await presaleContract.sell(...data1, {
-  //         gasLimit: gasEstimationForAll(address.toString(), fn1, data1),
-  //       });
-  //       await tx1.wait();
-  //       toast.success("Token Successfully Sell");
-  //       setLoader(false);
-  //       setState(false);
-  //     } catch (error) {
-  //       setLoader(false);
-  //       setState(false);
-  //       console.log(error, "error in CakedBread -=-==-=-=--=--");
+  const CakedBreadHandler = async () => {
+    if (!isConnected) {
+      toast.error("Please connect Wallet");
+    } else if (value.trim() === "") {
+      toast.error("Please Enter Amount");
+    } else if (value === "0") {
+      toast.error("Please Enter Valid Amount");
+    } else {
+      try {
+        setLoader(true);
+        let referral;
+        const referralParams = searchParams.get("referral");
+        if (!referralParams) {
+          referral = await Contract.referrals(address);
+          if (referral === "0x0000000000000000000000000000000000000000") {
+            let owner = await Contract.owner();
+            referral = owner;
+          }
+        } else {
+          referral = referralParams;
+        }
 
-  //       if (error?.data?.message) {
-  //         toast.error(error?.data?.message);
-  //       } else if (error?.reason) {
-  //         toast.error(error?.reason);
-  //       } else {
-  //         toast.error(error?.message);
-  //       }
-  //     }
-  //   }
-  // };
+        let fn = Contract1.estimateGas.buyCakes;
+        let data = [value.toString(), referral.toString()];
+        const tx = await Contract1.buyCakes({
+          value: value.toString(),
+          gasLimit: gasEstimationPayable(address, fn, data, value.toString()),
+        });
+        await tx.wait();
+        toast.success("Cake Baked Successfully");
+        setLoader(false);
+      } catch (error) {
+        setLoader(false);
+        console.log(error, "error in CakedBaked -=-==-=-=--=--");
+        if (error?.data?.message) {
+          toast.error(error?.data?.message);
+        } else if (error?.reason) {
+          toast.error(error?.reason);
+        } else {
+          toast.error(error?.message);
+        }
+      }
+    }
+  };
+
+  const ReBakeHandler = async () => {
+    try {
+      if (!isConnected) {
+        toast.error("Please connect Wallet");
+      } else {
+        setLoader(true);
+        let referral = await Contract.referrals(address);
+        let fn = Contract1.estimateGas.hatchCakes;
+        let data = [referral];
+        const tx = await Contract1.hatchCakes(...data, {
+          gasLimit: gasEstimationForAll(address, fn, data),
+        });
+        await tx.wait();
+        toast.success("ReBaked Successfully");
+        setLoader(false);
+      }
+    } catch (error) {
+      setLoader(false);
+      console.log(error, "error in ReBaked -=-==-=-=--=--");
+      if (error?.data?.message) {
+        toast.error(error?.data?.message);
+      } else if (error?.reason) {
+        toast.error(error?.reason);
+      } else {
+        toast.error(error?.message);
+      }
+    }
+  };
+  const EatBreadHandler = async () => {
+    try {
+      if (!isConnected) {
+        toast.error("Please connect Wallet");
+      } else {
+        setLoader(true);
+        let fn = Contract1.estimateGas.sellCakes;
+        let data = [];
+        const tx = await Contract1.sellCakes(...data, {
+          gasLimit: gasEstimationForAll(address, fn, data),
+        });
+        await tx.wait();
+        toast.success("EatBread Successfully");
+        setLoader(false);
+      }
+    } catch (error) {
+      setLoader(false);
+      console.log(error, "error in EatBread -=-==-=-=--=--");
+      if (error?.data?.message) {
+        toast.error(error?.data?.message);
+      } else if (error?.reason) {
+        toast.error(error?.reason);
+      } else {
+        toast.error(error?.message);
+      }
+    }
+  };
 
   return (
     <>
@@ -145,7 +209,7 @@ const Home = () => {
           </div>
           <div className="uppercase mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
             <p className="">Wallet</p>
-            <p>0 BNB</p>
+            <p>{balance} BNB</p>
           </div>
           <div className="uppercase mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
             <p className="">Your Beans</p>
@@ -154,13 +218,13 @@ const Home = () => {
 
           <input
             value={value}
-            onChange={() => setValue}
+            onChange={(e) => setValue(e.target.value)}
             placeholder="0 BNB"
             type="number"
             className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%] 2xl:w-[70%] border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
           <div className="flex justify-between items-center mt-5">
-            {performance.map((item, index) => {
+            {["25%", "50%", "75%", "100%"].map((item, index) => {
               return (
                 <p
                   key={index}
@@ -171,7 +235,10 @@ const Home = () => {
               );
             })}
           </div>
-          <button className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 ">
+          <button
+            onClick={() => CakedBreadHandler()}
+            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+          >
             Caked Bread
           </button>
           <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
@@ -179,20 +246,23 @@ const Home = () => {
             <p>Your rewards</p>
           </div>
           <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
-            <p className="">0 BEANS</p>
-            <p>0.00000 BNB</p>
+            <p className="">{reBake} BEANS</p>
+            <p>{rewards} BNB</p>
           </div>
-          <button className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 ">
+          <button
+            onClick={() => ReBakeHandler()}
+            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+          >
             Re-bake
           </button>
-          <button className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 ">
+          <button
+            onClick={() => EatBreadHandler()}
+            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+          >
             eat bread
           </button>
         </div>
-        <button
-          // onClick={() => router.push("/")}
-          className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] "
-        >
+        <button className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] ">
           Show coin flip
         </button>
         <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
@@ -204,8 +274,11 @@ const Home = () => {
 
           <input
             readOnly
+            id="referralInput"
             value={
-              referralInk != "" ? referralInk : "Connect your wallet to copy"
+              isConnected
+                ? `${window.location.origin}?referral=${address}`
+                : "Connect your wallet to copy"
             }
             placeholder=""
             type="text"
@@ -214,8 +287,10 @@ const Home = () => {
 
           <button
             onClick={() => {
-              referralInk
-                ? (navigator.clipboard.writeText(referralInk),
+              isConnected
+                ? (navigator.clipboard.writeText(
+                    document.getElementById("referralInput").value
+                  ),
                   toast.success("copied"))
                 : null;
             }}

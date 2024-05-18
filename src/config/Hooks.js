@@ -5,7 +5,7 @@ import { useMemo } from "react";
 const rpc = "https://data-seed-prebsc-1-s1.binance.org:8545";
 const walletAdd = "0x4eCbf8722613809922E436B5FB666FfB864363CC";
 
-export const contractAddress = "0xaE76E666b61DBEE8d2C82439388E923aA77F9b7F";
+export const contractAddress = "0xdaCe761e17F9512Aa19369b764B251A12aca7fA9";
 
 const useContract = (address, ABI, signer) => {
   const provider = new ethers.providers.JsonRpcProvider(rpc);
@@ -29,17 +29,21 @@ function calculateGasMargin(value) {
 }
 export const gasEstimationPayable = async (account, fn, data, amount) => {
   if (account) {
-    const estimateGas = await fn(...data, MaxUint256).catch(() => {
-      return fn({ value: amount.toString() });
-    });
+    const estimateGas = await fn(...data, ethers.constants.MaxUint256).catch(
+      () => {
+        return fn({ value: amount.toString() });
+      }
+    );
     return calculateGasMargin(estimateGas);
   }
 };
 export const gasEstimationForAll = async (account, fn, data) => {
   if (account) {
-    const estimateGas = await fn(...data, MaxUint256).catch(() => {
-      return fn(...data);
-    });
+    const estimateGas = await fn(...data, ethers.constants.MaxUint256).catch(
+      () => {
+        return fn(...data);
+      }
+    );
     return calculateGasMargin(estimateGas);
   }
 };

@@ -20,7 +20,7 @@ createWeb3Modal({
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   enableOnramp: true, // Optional - false as default
-  defaultChain: config.chains[4],
+  defaultChain: config.chains[1],
 });
 
 export default function Web3ModalProvider({ children, initialState }) {

@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 import { headers } from "next/headers";
 
 import { cookieToInitialState } from "wagmi";
@@ -14,16 +14,12 @@ import toast, { Toaster } from "react-hot-toast";
 import Navbar from "../components/navbar";
 const inter = Inter({ subsets: ["latin"] });
 const exo = Exo({ subsets: ["latin"], weight: "700" });
-export const metadata: Metadata = {
+export const metadata = {
   title: "Caked Bread",
   description: "THE BNB REWARD POOL WITH THE TASTIEST DAILY REWARDS!",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }) {
   const initialState = cookieToInitialState(config, headers().get("cookie"));
   return (
     <html lang="en">
