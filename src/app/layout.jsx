@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={exo.className} style={{ background: "#f0e8ca" }}>
         <main className="home">
+          {/* <div> */}
           <Web3ModalProvider initialState={initialState}>
             <ContextAPI>
               <Toaster />
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
               {children}
             </ContextAPI>
           </Web3ModalProvider>
+          {/* </div> */}
         </main>
       </body>
     </html>
