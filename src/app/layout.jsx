@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 
 import { config } from "../config/wagmiConfig";
-import ContextAPI from "../config/ContextApi";
+import ContextAPI from "../config/ContextApiFile";
 import Web3ModalProvider from "../config/web3ModalProvider";
 
 import { Inter, Exo } from "next/font/google";
