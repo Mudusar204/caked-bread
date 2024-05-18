@@ -32,7 +32,7 @@ const Home = () => {
   const [reBake, setReBake] = useState("");
   const [rewards, setRewards] = useState("");
   const [reBakeTime, setReBakeTime] = useState("");
-  const [disReBake, setDisReBake] = useState(false);
+  const [disReBake, setDisReBake] = useState(true);
   const [showCalculatedBeans, setShowCalculatedBeans] = useState(false);
   const [CalculatedBeans, setCalculatedBeans] = useState("");
   //@ts-ignore
@@ -68,11 +68,19 @@ const Home = () => {
       let formatValue = myCakes.toString();
       console.log(formatValue, "formatValue-=--=-=--=");
       let rewardBreads = await Contract.calculateCakesSell(+formatValue);
-      setRewards(formatEther(rewardBreads));
-      reBakeTime;
+      setRewards((+formatEther(rewardBreads)).toFixed(5));
+
+      // lastHatch
       let lastHatch = await Contract.lastHatch(address);
       setReBakeTime(lastHatch.toString());
-      console.log(lastHatch, "lastHatch=-=--==-");
+      console.log(lastHatch.toString(), "lastHatch=-=--==-", Date.now());
+      const milliseconds = 60 * 60 * 1000;
+      const currentTimestamp = +lastHatch.toString();
+      const futureTimestamp = currentTimestamp + milliseconds;
+      if (futureTimestamp > Date.now()) {
+        console.log("Button is active");
+        setDisReBake(false);
+      }
     }
     FetchData();
   }, [isConnected]);
@@ -108,6 +116,7 @@ const Home = () => {
         });
         await tx.wait();
         toast.success("Cake Baked Successfully");
+        setValue("");
         setLoader(false);
       } catch (error) {
         setLoader(false);
@@ -293,6 +302,7 @@ const Home = () => {
             <p>{rewards} BNB</p>
           </div>
           <button
+            disabled={disReBake}
             onClick={() => ReBakeHandler()}
             className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
