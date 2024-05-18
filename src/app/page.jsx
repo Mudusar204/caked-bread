@@ -33,7 +33,7 @@ const Home = () => {
   const [rewards, setRewards] = useState("");
   const [reBakeTime, setReBakeTime] = useState("");
   const [disReBake, setDisReBake] = useState(false);
-
+  const [showCalculatedBeans, setShowCalculatedBeans] = useState(false);
   //@ts-ignore
 
   // -==========================================================================
@@ -170,6 +170,16 @@ const Home = () => {
     }
   };
 
+  const calculateBeans = async (e) => {
+    try {
+      console.log("funcion challa");
+
+      let beans = await Contract.calculateEggBuy(parseUnits(e.target.value));
+      let yourBeans = (beans * 0.92) / 1080000;
+      console.log(yourBeans, "function called", beans);
+      setShowCalculatedBeans(true);
+    } catch (error) {}
+  };
   return (
     <>
       {loader && (
@@ -211,12 +221,26 @@ const Home = () => {
           </div>
 
           <input
+            disabled={!isConnected}
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setTimeout(() => {
+                calculateBeans(e);
+              }, 1000);
+            }}
             placeholder="0 BNB"
             type="number"
             className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
+          <div
+            className={`${
+              showCalculatedBeans ? "" : "hidden"
+            } uppercase mt-5  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]`}
+          >
+            <p>You will Get</p>
+            <p>{myBeans} BEANS</p>
+          </div>
           <div className="flex justify-between items-center mt-5">
             {["25%", "50%", "75%", "100%"].map((item, index) => {
               return (
