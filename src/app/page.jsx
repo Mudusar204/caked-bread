@@ -8,15 +8,17 @@ const montserrat = Montserrat({ subsets: ["cyrillic"], weight: "500" });
 const exo = Exo({ subsets: ["latin"], weight: "700" });
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
-import { useAccount, useBalance, useChainId, useSwitchChain } from "wagmi";
+import { useAccount, useChainId, useSwitchChain } from "wagmi";
 import {
   gasEstimationForAll,
   gasEstimationPayable,
   useBreadContract,
+  contractAddress,
 } from "../config/Hooks";
 import { DataContext } from "../config/ContextAPI";
 import { useEthersProvider, useEthersSigner } from "../config/ethersAdapter";
-import { formatEther, parseEther } from "ethers/lib/utils";
+import { formatEther, parseEther, parseUnits } from "ethers/lib/utils";
+import abi from "../config/abi.json";
 
 const Home = () => {
   const router = useRouter();
@@ -30,6 +32,7 @@ const Home = () => {
   const [reBake, setReBake] = useState("");
   const [rewards, setRewards] = useState("");
   const [reBakeTime, setReBakeTime] = useState("");
+  const [disReBake, setDisReBake] = useState(false);
 
   //@ts-ignore
 
@@ -38,15 +41,6 @@ const Home = () => {
   const provider = useEthersProvider();
   const Contract = useBreadContract();
   const Contract1 = useBreadContract(signer);
-  const { chains, switchChain } = useSwitchChain();
-  const chainId = useChainId();
-
-  useEffect(() => {
-    if (isConnected && chainId !== 97) {
-      toast.error("Switching to BSC Testnet");
-      switchChain(97);
-    }
-  }, [isConnected, chainId, switchChain]);
 
   useEffect(() => {
     async function FetchData() {
@@ -66,7 +60,7 @@ const Home = () => {
       console.log(formatValue, "formatValue-=--=-=--=");
       let rewardBreads = await Contract.calculateCakesSell(+formatValue);
       setRewards(formatEther(rewardBreads));
-      // reBakeTime
+      reBakeTime;
       let lastHatch = await Contract.lastHatch(address);
       setReBakeTime(lastHatch.toString());
       console.log(lastHatch, "lastHatch=-=--==-");
@@ -96,12 +90,12 @@ const Home = () => {
         } else {
           referral = referralParams;
         }
-
         let fn = Contract1.estimateGas.buyCakes;
-        let data = [value.toString(), referral.toString()];
-        const tx = await Contract1.buyCakes({
-          value: value.toString(),
-          gasLimit: gasEstimationPayable(address, fn, data, value.toString()),
+        let data = [referral];
+
+        const tx = await Contract1.buyCakes(...data, {
+          value: parseUnits(value),
+          gasLimit: gasEstimationPayable(address, fn, data, value),
         });
         await tx.wait();
         toast.success("Cake Baked Successfully");

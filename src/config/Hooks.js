@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import abi from "../config/abi.json";
 import { useMemo } from "react";
+import { parseUnits } from "viem";
 // const rpc = "https://bsc-dataseed.binance.org/";
 const rpc = "https://data-seed-prebsc-1-s1.binance.org:8545";
 const walletAdd = "0x4eCbf8722613809922E436B5FB666FfB864363CC";
@@ -27,14 +28,29 @@ function calculateGasMargin(value) {
     BigNumber.from(10000)
   ).toFixed(0);
 }
+// export const gasEstimationPayable = async (account, fn, data, amount) => {
+//   if (account) {
+//     const estimateGas = await fn(...data, ethers.constants.MaxUint256).catch(
+//       () => {
+//         return fn({ value: amount.toString() });
+//       }
+//     );
+//     return calculateGasMargin(estimateGas);
+//   }
+// };
+
 export const gasEstimationPayable = async (account, fn, data, amount) => {
-  if (account) {
-    const estimateGas = await fn(...data, ethers.constants.MaxUint256).catch(
-      () => {
-        return fn({ value: amount.toString() });
-      }
-    );
-    return calculateGasMargin(estimateGas);
+  try {
+    if (account) {
+      const estimateGas = await fn(...data, ethers.constants.MaxUint256).catch(
+        () => {
+          return fn(...data, { value: parseUnits(amount.toString()) });
+        }
+      );
+      return calculateGasMargin(estimateGas);
+    }
+  } catch (error) {
+    return 210000;
   }
 };
 export const gasEstimationForAll = async (account, fn, data) => {
