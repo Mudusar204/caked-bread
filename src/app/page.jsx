@@ -31,7 +31,7 @@ const Home = () => {
   const [balance, setBalance] = useState("");
   const [reBake, setReBake] = useState("");
   const [rewards, setRewards] = useState("");
-  const [reBakeTime, setReBakeTime] = useState("");
+  // const [reBakeTime, setReBakeTime] = useState("");
   const [disReBake, setDisReBake] = useState(true);
   const [showCalculatedBeans, setShowCalculatedBeans] = useState(false);
   const [CalculatedBeans, setCalculatedBeans] = useState("");
@@ -56,7 +56,7 @@ const Home = () => {
       let CBalance = await Contract.getBalance();
       setContractBalance((+formatEther(CBalance.toString())).toFixed(5));
       let MyMiners = await Contract.getMyMiners(address);
-      setMyBeans((+formatEther(MyMiners.toString())).toFixed(5));
+      setMyBeans(MyMiners.toString());
       let balance = await provider.getBalance(address);
       setBalance((+formatEther(balance.toString())).toFixed(5));
       // rebake
@@ -77,7 +77,7 @@ const Home = () => {
       const milliseconds = 60 * 60 * 1000;
       const currentTimestamp = +lastHatch.toString();
       const futureTimestamp = currentTimestamp + milliseconds;
-      if (futureTimestamp > Date.now()) {
+      if (futureTimestamp > Date.now() && +rewards > 0.001) {
         console.log("Button is active");
         setDisReBake(false);
       }
