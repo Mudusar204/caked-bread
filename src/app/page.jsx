@@ -218,13 +218,28 @@ const Home = () => {
             className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
           <div className="flex justify-between items-center mt-5">
-            {["25%", "50%", "75%", "100%"].map((item, index) => {
+            {["25", "50", "75", "100"].map((item, i) => {
               return (
                 <p
-                  key={index}
-                  className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px]"
+                  onClick={() => {
+                    if (+i === 0) {
+                      let number = +balance * 0.25;
+                      setValue(number);
+                    } else if (+i === 1) {
+                      let number = +balance * 0.5;
+                      setValue(number);
+                    } else if (+i === 2) {
+                      let number = +balance * 0.75;
+                      setValue(number);
+                    } else if (+i === 3) {
+                      let number = +balance;
+                      setValue(number);
+                    }
+                  }}
+                  key={i}
+                  className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px] pointer"
                 >
-                  {item}
+                  {item}%
                 </p>
               );
             })}
