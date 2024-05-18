@@ -6,7 +6,7 @@ import { parseUnits } from "viem";
 const rpc = "https://data-seed-prebsc-1-s1.binance.org:8545";
 const walletAdd = "0x4eCbf8722613809922E436B5FB666FfB864363CC";
 
-export const contractAddress = "0xdaCe761e17F9512Aa19369b764B251A12aca7fA9";
+export const contractAddress = "0xdaAb436d2AfDEb4cE0eB40244CC0dDed0c619240";
 
 const useContract = (address, ABI, signer) => {
   const provider = new ethers.providers.JsonRpcProvider(rpc);

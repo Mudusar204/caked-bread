@@ -34,6 +34,7 @@ const Home = () => {
   const [reBakeTime, setReBakeTime] = useState("");
   const [disReBake, setDisReBake] = useState(false);
   const [showCalculatedBeans, setShowCalculatedBeans] = useState(false);
+  const [CalculatedBeans, setCalculatedBeans] = useState("");
   //@ts-ignore
 
   // -==========================================================================
@@ -41,6 +42,14 @@ const Home = () => {
   const provider = useEthersProvider();
   const Contract = useBreadContract();
   const Contract1 = useBreadContract(signer);
+
+  useEffect(() => {
+    if (+value > 0) {
+      setTimeout(() => {
+        calculateBeans(value);
+      }, 1000);
+    }
+  }, [value]);
 
   useEffect(() => {
     async function FetchData() {
@@ -170,15 +179,17 @@ const Home = () => {
     }
   };
 
-  const calculateBeans = async (e) => {
+  const calculateBeans = async (value) => {
     try {
       console.log("funcion challa");
-
-      let beans = await Contract.calculateEggBuy(parseUnits(e.target.value));
-      let yourBeans = (beans * 0.92) / 1080000;
-      console.log(yourBeans, "function called", beans);
+      let formatValue = parseUnits(value.toString());
+      let beans = await Contract.calculateEggBuySimple(formatValue.toString());
+      let yourBeans = (+beans.toString() * 0.92) / 1080000;
+      setCalculatedBeans(yourBeans.toFixed(6));
       setShowCalculatedBeans(true);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error, "-=-==========error in get cakes input");
+    }
   };
   return (
     <>
@@ -225,9 +236,6 @@ const Home = () => {
             value={value}
             onChange={(e) => {
               setValue(e.target.value);
-              setTimeout(() => {
-                calculateBeans(e);
-              }, 1000);
             }}
             placeholder="0 BNB"
             type="number"
@@ -239,7 +247,7 @@ const Home = () => {
             } uppercase mt-5  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]`}
           >
             <p>You will Get</p>
-            <p>{myBeans} BEANS</p>
+            <p>{CalculatedBeans} BEANS</p>
           </div>
           <div className="flex justify-between items-center mt-5">
             {["25", "50", "75", "100"].map((item, i) => {
