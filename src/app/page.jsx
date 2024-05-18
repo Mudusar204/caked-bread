@@ -187,16 +187,16 @@ const Home = () => {
           THE BNB REWARD POOL WITH THE TASTIEST <br /> DAILY REWARDS! <br /> 8%
           VARIABLE RETURNS DAILY
         </p>
-        <button className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] w-[100%] 2xl:w-[70%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 ">
+        <button className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 ">
           FAQS
         </button>
         <button
           onClick={() => router.push("/about")}
-          className="mt-[15px] text-center font-[700px] text-[20px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%] 2xl:w-[70%] border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 "
+          className="mt-[15px] text-center font-[700px] text-[20px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%]  border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 "
         >
           MERCH SHOP
         </button>
-        <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
+        <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
           <div className="uppercase flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
             <p className="">Contract</p>
             <p>{contractBalance} BNB </p>
@@ -215,7 +215,7 @@ const Home = () => {
             onChange={(e) => setValue(e.target.value)}
             placeholder="0 BNB"
             type="number"
-            className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%] 2xl:w-[70%] border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
+            className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
           <div className="flex justify-between items-center mt-5">
             {["25%", "50%", "75%", "100%"].map((item, index) => {
@@ -231,7 +231,7 @@ const Home = () => {
           </div>
           <button
             onClick={() => CakedBreadHandler()}
-            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Caked Bread
           </button>
@@ -245,21 +245,21 @@ const Home = () => {
           </div>
           <button
             onClick={() => ReBakeHandler()}
-            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Re-bake
           </button>
           <button
             onClick={() => EatBreadHandler()}
-            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             eat bread
           </button>
         </div>
-        <button className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] ">
+        <button className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%]   py-[10px] rounded-md bg-[#DF8B24] ">
           Show coin flip
         </button>
-        <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
+        <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
           <div>
             <p className="uppercase text-center font-[700px] text-[20px] text-[#FDF8DF]">
               Referral Link
@@ -276,7 +276,7 @@ const Home = () => {
             }
             placeholder=""
             type="text"
-            className="p-[10px] mt-[30px]  font-[700px] text-[20px] text-black w-[100%] 2xl:w-[70%] border-[3px] border-black py-[10px] bg-[#FDF8DF] "
+            className="p-[10px] mt-[30px]  font-[700px] text-[20px] text-black w-[100%]  border-[3px] border-black py-[10px] bg-[#FDF8DF] "
           />
 
           <button
@@ -288,7 +288,7 @@ const Home = () => {
                   toast.success("copied"))
                 : null;
             }}
-            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Copy Link
           </button>
