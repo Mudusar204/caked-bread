@@ -259,7 +259,7 @@ const Home = () => {
             <p>{CalculatedBeans} BEANS</p>
           </div>
           <div className="flex justify-between items-center mt-5">
-            {["25", "50", "75", "100"].map((item, i) => {
+            {["25%", "50%", "75%", "100%", "MAX"].map((item, i) => {
               return (
                 <p
                   onClick={() => {
@@ -275,12 +275,15 @@ const Home = () => {
                     } else if (+i === 3) {
                       let number = +balance;
                       setValue(number);
+                    } else if (+i === 4) {
+                      let number = +balance;
+                      setValue(number);
                     }
                   }}
                   key={i}
-                  className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px] pointer"
+                  className="text-[#FDF8DF] cursor-pointer font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px] pointer"
                 >
-                  {item}%
+                  {item}
                 </p>
               );
             })}
@@ -313,9 +316,7 @@ const Home = () => {
             eat bread
           </button>
         </div>
-        <button className="uppercase mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%]   py-[10px] rounded-md bg-[#DF8B24] ">
-          Show coin flip
-        </button>
+
         <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
           <div>
             <p className="uppercase text-center font-[700px] text-[20px] text-[#FDF8DF]">
