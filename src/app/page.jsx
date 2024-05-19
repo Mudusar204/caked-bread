@@ -216,18 +216,16 @@ const Home = () => {
             " text-center font-[400px] text-[24px] leading-[32px] mt-[30px]"
           }
         >
-          THE BNB REWARD POOL WITH THE TASTIEST <br /> DAILY REWARDS! <br /> 8%
+          THE BNB REWARD POOL WITH THE TASTIEST <br /> DAILY REWARDS! <br /> 5%
           VARIABLE RETURNS DAILY
         </p>
-        <button className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 ">
-          FAQS
-        </button>
         <button
           onClick={() => router.push("/about")}
-          className="mt-[15px] text-center font-[700px] text-[20px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%]  border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 "
+          className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 "
         >
-          MERCH SHOP
+          FAQS
         </button>
+
         <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
           <div className="uppercase flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
             <p className="">Contract</p>
@@ -238,8 +236,8 @@ const Home = () => {
             <p>{balance} BNB</p>
           </div>
           <div className="uppercase mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
-            <p className="">Your Beans</p>
-            <p>{myBeans} BEANS</p>
+            <p className="">Your BREADS</p>
+            <p>{myBeans} BREADS</p>
           </div>
 
           <input
@@ -353,12 +351,12 @@ const Home = () => {
           </button>
           <p
             className={
-              montserrat.className +
-              "text-center mt-[20px] uppercase px-4 leading-6  text-[16px] text-[#523129]"
+              // montserrat.className +
+              "text-center mt-[20px] font-sans font-light uppercase px-4 leading-6  text-[16px] text-[#523129]"
             }
           >
-            Invite your friends using your link and earn ~10% of any Beans they
-            BAKE and 1% of Re-BAKES. Referral Rewards are additional and are not
+            Invite your friends using your link and earn ~5% of any Breads they
+            BAKE and 2% of Re-BAKES. Referral Rewards are additional and are not
             deducted from your friends beans.
           </p>
         </div>
