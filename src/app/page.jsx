@@ -261,7 +261,7 @@ const Home = () => {
             <p>{CalculatedBeans} BEANS</p>
           </div>
           <div className="flex justify-between items-center mt-5 max-sm:mt-3">
-            {["25%", "50%", "75%", "100%", "MAX"].map((item, i) => {
+            {["25%", "50%", "75%", "100%"].map((item, i) => {
               return (
                 <p
                   onClick={() => {
@@ -275,9 +275,6 @@ const Home = () => {
                       let number = +balance * 0.75;
                       setValue(number);
                     } else if (+i === 3) {
-                      let number = +balance;
-                      setValue(number);
-                    } else if (+i === 4) {
                       let number = +balance;
                       setValue(number);
                     }

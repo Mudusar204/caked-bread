@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const AccordionItem = ({ title, content, isOpen, onClick }) => {
   return (
-    <div className=" mt-3">
+    <div className=" mt-3 w-full">
       <button
         className={`flex z-100 justify-between items-center w-full text-left p-4 bg-[#DF8B24] rounded-lg ${
           isOpen ? "rounded-bl-none rounded-br-none" : ""
@@ -46,7 +46,7 @@ const Accordion = ({ items }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full ">
       {items.map((item, index) => (
         <AccordionItem
           key={index}
