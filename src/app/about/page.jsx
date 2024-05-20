@@ -16,7 +16,7 @@ const Page = () => {
     "marketing proposal",
   ]);
   return (
-    <div className="container flex flex-col item-center max-sm:w-[90%] max-lg:w-[50%] max-md:w-[60%] w-[40%] mx-auto">
+    <div className="container flex flex-col item-center max-sm:w-[90%] max-lg:w-[50%] max-md:w-[60%] w-[578px] mx-auto">
       <p
         className={
           monomaniacOne.className +

@@ -209,33 +209,33 @@ const Home = () => {
           </div>
         </>
       )}
-      <div className="container max-sm:w-[90%] max-lg:w-[50%] max-md:w-[60%] w-[40%] mx-auto">
+      <div className="container max-sm:w-[85%] max-lg:w-[50%] max-md:w-[60%] w-[512px] mx-auto">
         <p
           className={
             monomaniacOne.className +
-            " text-center font-[400px] text-[24px] leading-[32px] mt-[30px]"
+            " text-center font-[400px] text-[24px] max-sm:text-[18px] max-sm:leading-[24px] leading-[32px] mt-[30px]"
           }
         >
-          THE BNB REWARD POOL WITH THE TASTIEST <br /> DAILY REWARDS! <br /> 5%
-          VARIABLE RETURNS DAILY
+          THE BNB REWARD POOL WITH THE TASTIEST <br className="max-sm:hidden" />
+          DAILY REWARDS! <br /> 5% VARIABLE RETURNS DAILY
         </p>
         <button
           onClick={() => router.push("/about")}
-          className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 "
+          className="mt-[30px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 "
         >
           FAQS
         </button>
 
-        <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
-          <div className="uppercase flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+        <div className="mt-[20px] w-[100%]  p-[40px] max-sm:p-[20px] rounded-md bg-[#523129B5]/70 ">
+          <div className="uppercase flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
             <p className="">Contract</p>
             <p>{contractBalance} BNB </p>
           </div>
-          <div className="uppercase mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+          <div className="uppercase mt-5 max-sm:mt-3 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
             <p className="">Wallet</p>
             <p>{balance} BNB</p>
           </div>
-          <div className="uppercase mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+          <div className="uppercase mt-5 max-sm:mt-3 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
             <p className="">Your BREADS</p>
             <p>{myBeans} BREADS</p>
           </div>
@@ -248,17 +248,17 @@ const Home = () => {
             }}
             placeholder="0 BNB"
             type="number"
-            className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
+            className="p-[10px] mt-[30px] max-sm:mt-3 text-right font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
           <div
             className={`${
               showCalculatedBeans ? "" : "hidden"
-            } uppercase mt-5  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]`}
+            } uppercase mt-5 max-sm:mt-3  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]`}
           >
             <p>You will Get</p>
             <p>{CalculatedBeans} BEANS</p>
           </div>
-          <div className="flex justify-between items-center mt-5">
+          <div className="flex justify-between items-center mt-5 max-sm:mt-3">
             {["25%", "50%", "75%", "100%", "MAX"].map((item, i) => {
               return (
                 <p
@@ -281,7 +281,7 @@ const Home = () => {
                     }
                   }}
                   key={i}
-                  className="text-[#FDF8DF] cursor-pointer font-[700px] text-[20px] max-sm:text-[14px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] py-[18px] max-sm:py-[13px] pointer"
+                  className="text-[#FDF8DF] cursor-pointer font-[700px] text-[20px]   max-sm:text-[12px]  leading-[23px] bg-[#DF8B24] rounded-[50px] px-[10px] max-sm:px-[7px] py-[18px] max-sm:py-[10px]  pointer"
                 >
                   {item}
                 </p>
@@ -290,36 +290,36 @@ const Home = () => {
           </div>
           <button
             onClick={() => CakedBreadHandler()}
-            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[30px] max-sm:mt-3 text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Caked Bread
           </button>
-          <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+          <div className="mt-5 max-sm:mt-3 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
             <p className="">RE-BAKE</p>
             <p>Your rewards</p>
           </div>
-          <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+          <div className="mt-5 max-sm:mt-3 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
             <p className="">{reBake} BEANS</p>
             <p>{rewards} BNB</p>
           </div>
           <button
             disabled={disReBake}
             onClick={() => ReBakeHandler()}
-            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[20px] max-sm:mt-3 text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Re-bake
           </button>
           <button
             onClick={() => EatBreadHandler()}
-            className="uppercase mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[20px] max-sm:mt-3 text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             eat bread
           </button>
         </div>
 
-        <div className="mt-[20px] w-[100%]  p-[30px] rounded-md bg-[#DF8B24]/70 ">
+        <div className="mt-[20px] w-[100%]  px-[35px] max-sm:px-[15px] pt-[20px] pb-[30px] rounded-md bg-[#DF8B24]/70 ">
           <div>
-            <p className="uppercase text-center font-[700px] text-[20px] text-[#FDF8DF]">
+            <p className="uppercase text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DF]">
               Referral Link
             </p>
           </div>
@@ -334,7 +334,7 @@ const Home = () => {
             }
             placeholder=""
             type="text"
-            className="p-[10px] mt-[30px]  font-[700px] text-[20px] text-black w-[100%]  border-[3px] border-black py-[10px] bg-[#FDF8DF] "
+            className="p-[10px] mt-[30px] max-sm:mt-[10px]  font-[700px] text-[20px] max-sm:text-[14px] text-black w-[100%]  border-[3px] border-black py-[10px] bg-[#FDF8DF] "
           />
 
           <button
@@ -346,14 +346,14 @@ const Home = () => {
                   toast.success("copied"))
                 : null;
             }}
-            className="uppercase mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className="uppercase mt-[30px] max-sm:mt-[15px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
           >
             Copy Link
           </button>
           <p
             className={
               // montserrat.className +
-              "text-center mt-[20px] font-sans font-light uppercase px-4 leading-6  text-[16px] text-[#523129]"
+              "text-center mt-[20px] max-sm:mt-[10px] font-sans font-light uppercase px-5 max-sm:px-[5px] max-sm:leading-[16px] max-sm:text-[12px] leading-6  text-[16px] text-[#523129]"
             }
           >
             Invite your friends using your link and earn ~5% of any Breads they
@@ -430,22 +430,22 @@ export default Home;
 //         THE BNB REWARD POOL WITH THE TASTIEST <br /> DAILY REWARDS! <br /> 8%
 //         VARIABLE RETURNS DAILY
 //       </p>
-//       <button className="mt-[30px] text-center font-[700px] text-[20px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%] 2xl:w-[70%] border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 ">
+//       <button className="mt-[30px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%] 2xl:w-[70%] border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 ">
 //         FAQS
 //       </button>
-//       <button className="mt-[15px] text-center font-[700px] text-[20px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%] 2xl:w-[70%] border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 ">
+//       <button className="mt-[15px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] w-[100%] 2xl:w-[70%] border border-[#DF8B24] py-[10px] rounded-md bg-white/1 0 ">
 //         MERCH SHOP
 //       </button>
 //       <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
-//         <div className="flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//         <div className="flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //           <p className="">Max Wager</p>
 //           <p>{maxWager} BNB</p>
 //         </div>
-//         <div className=" mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//         <div className=" mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //           <p className="">Win Chance</p>
 //           <p>50%</p>
 //         </div>
-//         <div className=" flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//         <div className=" flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //           <p className="">Payout</p>
 //           <div className={`coin ${coinFlipped ? "flip" : ""}`}>
 //             <Image height={94} width={94} src={"/coin.svg"} alt="coinImg" />
@@ -457,7 +457,7 @@ export default Home;
 //             onClick={() => setPredictedOutcome(1)}
 //             className={`${
 //               predictedOutcome === 1 ? "bg-[#DF8B24]" : "bg-[#523129B5]/90"
-//             }   font-[700px] text-[#FDF8DF] flex-1 text-[20px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] max-lg:px-[30px] px-[50px] rounded-[50px]`}
+//             }   font-[700px] text-[#FDF8DF] flex-1 text-[20px] max-sm:text-[14px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] max-lg:px-[30px] px-[50px] rounded-[50px]`}
 //           >
 //             HEADS
 //           </button>
@@ -465,12 +465,12 @@ export default Home;
 //             onClick={() => setPredictedOutcome(0)}
 //             className={`${
 //               predictedOutcome === 0 ? "bg-[#DF8B24]" : "bg-[#523129B5]/90"
-//             } text-[#FDF8DF] flex-1 font-[700px] text-[20px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] max-lg:px-[30px] px-[50px] rounded-[50px]`}
+//             } text-[#FDF8DF] flex-1 font-[700px] text-[20px] max-sm:text-[14px] py-[10px] max-sm:py-[7px] max-sm:px-[15px] max-lg:px-[30px] px-[50px] rounded-[50px]`}
 //           >
 //             TAILS
 //           </button>
 //         </div>
-//         <p className="text-[#FDF8DF] font-[700px] text-[20px] leading-[23px] mt-[50px] text-center">
+//         <p className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px] mt-[50px] text-center">
 //           PLACE YOUR BET HEADS OR TAILS
 //         </p>
 //         <input
@@ -479,53 +479,53 @@ export default Home;
 //           min={0}
 //           onChange={(e) => setBetAmount(e.target.value)}
 //           placeholder="0 BNB"
-//           className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] text-[#DF8B24] w-[100%] 2xl:w-[70%] border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
+//           className="p-[10px] mt-[30px] text-right font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] w-[100%] 2xl:w-[70%] border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
 //         />
 //         <button
 //           onClick={flipCoin}
-//           className="mt-[30px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+//           className="mt-[30px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
 //         >
 //           FLIP COIN
 //         </button>
 //         <p className="w-[100%] border-t-[1px] border-[#DF8B24] mt-7"></p>
-//         <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//         <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //           <p className="">Game Result</p>
 //           <p>{gameResult}</p>
 //         </div>
-//         <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//         <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //           <p className="">Your Winnings</p>
 //           <p>{yourWinnings} BNB</p>
 //         </div>
-//         <button className="mt-[20px] text-center font-[700px] text-[20px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 ">
+//         <button className="mt-[20px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%] 2xl:w-[70%]  py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 ">
 //           CLAIM WINNING
 //         </button>
 //       </div>
 //       <button
 //         onClick={() => router.push("/home")}
-//         className="mt-[10px] text-center font-[700px] text-[20px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] "
+//         className="mt-[10px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DF] w-[100%] 2xl:w-[70%]  py-[10px] rounded-md bg-[#DF8B24] "
 //       >
 //         SHOW CAKED BREAD
 //       </button>
 //       <div className="mt-[20px] w-[100%] 2xl:w-[70%]  p-[30px] rounded-md bg-[#523129B5]/70 ">
-//         <p className="text-[#FDF8DF] font-[700px] text-[20px] leading-[23px] text-center">
+//         <p className="text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px] text-center">
 //           Previous Games
 //         </p>
 
 //         {previousGames.map((game: any, index: any) => (
 //           <div key={index}>
-//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //               <p>Game Number</p>
 //               <p> {index + 1}</p>
 //             </div>
-//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //               <p>Predicted Outcome</p>
 //               <p>{game.predictedOutcome}</p>
 //             </div>
-//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //               <p>Winner</p>
 //               <p>{game?.winner ? "Yes" : "No"}</p>
 //             </div>
-//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] leading-[23px]">
+//             <div className="mt-5 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
 //               <p>Game Completed</p>
 //               <p>{game.gameCompleted ? "Yes" : "No"}</p>
 //             </div>
