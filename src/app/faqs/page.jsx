@@ -140,7 +140,7 @@ const Page = () => {
           <br /> <br />
           Project Risks: Caked Bread is a new and emerging project, and as such,
           it may face various risks, including technological, operational, and
-          execution risks. There is no guarantee of the project's success or
+          execution risks. There is no guarantee of the projects success or
           continued operation.
           <br /> <br />
           No Financial Advice: The information provided in this disclaimer and
