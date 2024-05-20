@@ -9,6 +9,7 @@ const exo = Exo({ subsets: ["latin"], weight: "700" });
 import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { useAccount, useChainId, useSwitchChain } from "wagmi";
+import Image from "next/image";
 import {
   gasEstimationForAll,
   gasEstimationPayable,
@@ -19,6 +20,7 @@ import { DataContext } from "../config/ContextApiFile";
 import { useEthersProvider, useEthersSigner } from "../config/ethersAdapter";
 import { formatEther, parseEther, parseUnits } from "ethers/lib/utils";
 import abi from "../config/abi.json";
+import Link from "next/link";
 
 const Home = () => {
   const router = useRouter();
@@ -220,7 +222,7 @@ const Home = () => {
           DAILY REWARDS! <br /> 5% VARIABLE RETURNS DAILY
         </p>
         <button
-          onClick={() => router.push("/about")}
+          onClick={() => router.push("/faqs")}
           className="mt-[30px] text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] w-[100%] border border-[#DF8B24] hover:bg-[#DF8B24]/90 hover:text-[#f9eba7] py-[10px] rounded-md bg-white/1 0 "
         >
           FAQS
@@ -360,6 +362,43 @@ const Home = () => {
             BAKE and 2% of Re-BAKES. Referral Rewards are additional and are not
             deducted from your friends beans.
           </p>
+        </div>
+        <div className="flex justify-center items-center gap-3 my-[20px]">
+          <Link href={"https://t.me/cakedbreadminer"} target="_blank">
+            <Image
+              className=" cursor-pointer"
+              height={36}
+              width={36}
+              src={"/telegram.svg"}
+              alt="telegram"
+            />
+          </Link>
+          <Link
+            href={"https://x.com/Cakedbread?t=dRBYfyKvcXkcdJ7yufWlJw&s=09"}
+            target="_blank"
+          >
+            <Image
+              className=" cursor-pointer"
+              height={25}
+              width={25}
+              src={"/twitter.svg"}
+              alt="twitter"
+            />
+          </Link>
+          <Link
+            href={
+              "https://testnet.bscscan.com/address/0xdaAb436d2AfDEb4cE0eB40244CC0dDed0c619240#readContract"
+            }
+            target="_blank"
+          >
+            <Image
+              className=" cursor-pointer"
+              height={30}
+              width={30}
+              src={"/etherScan.svg"}
+              alt="bsc"
+            />
+          </Link>
         </div>
       </div>
     </>
