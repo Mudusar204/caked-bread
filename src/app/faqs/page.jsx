@@ -44,14 +44,14 @@ const Page = () => {
         "No, you cannot get your deposited BNB all at once. BNB is locked in the TVL and BNB is received through rewards.",
     },
     {
-      title: "WHow is the value of my bread determined?",
+      title: "How is the value of my bread determined?",
       content:
         "The value of bread fluctuates based on TVL and inflationary rates. Bread do not have a set price      ",
     },
     {
       title: "What happens when I press re-bake button?",
       content:
-        "e-baking compounds your rewards, increasing your breads over time. There is a 60-minute cool down for re-baking. As per the recommendation of Audit, we have used Front End to make sure that the user's Rebakes give them at least 1 Bread.",
+        "Re-baking compounds your rewards, increasing your breads over time. There is a 60-minute cool down for re-baking. As per the recommendation of Audit, we have used Front End to make sure that the user's Rebakes give them at least 1 Bread.",
     },
     {
       title: "What happens when I press eat breads?",
