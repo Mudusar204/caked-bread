@@ -6,12 +6,15 @@
   background-color: #f0e8ca;
   background-image: url("/homeBG.png");
   background-size: 100% 100vh;
-  /* background-position: right; */
+  background-position: right;
+  background-attachment: fixed;
+
   background-repeat: no-repeat;
   min-height: 100vh;
   min-width: 100vw;
   padding-bottom: 50px;
 }
+
 /* @media screen and (max-width: 768px) {
   .home {
     background-size: cover;
