@@ -72,12 +72,13 @@ const Home = () => {
 
       // lastHatch
       let lastHatch = await Contract.lastHatch(address);
-      setReBakeTime(lastHatch.toString());
+      // setReBakeTime(lastHatch.toString());
       console.log(lastHatch.toString(), "lastHatch=-=--==-", Date.now());
       const milliseconds = 60 * 60 * 1000;
       const currentTimestamp = +lastHatch.toString();
       const futureTimestamp = currentTimestamp + milliseconds;
-      if (futureTimestamp > Date.now() && +rewards > 0.001) {
+      if (futureTimestamp > Date.now() && +rewards > 0.0000001) {
+        //0.001 line Limit
         console.log("Button is active");
         setDisReBake(false);
       }

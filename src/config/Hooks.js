@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import abi from "../config/abi.json";
 import { useMemo } from "react";
 import { parseUnits } from "viem";
@@ -6,7 +6,7 @@ import { parseUnits } from "viem";
 const rpc = "https://data-seed-prebsc-1-s1.binance.org:8545";
 const walletAdd = "0x4eCbf8722613809922E436B5FB666FfB864363CC";
 
-export const contractAddress = "0xdaAb436d2AfDEb4cE0eB40244CC0dDed0c619240";
+export const contractAddress = "0x547f87FD29E4176B576380D2080bF1e6bf16Fd2B";
 
 const useContract = (address, ABI, signer) => {
   const provider = new ethers.providers.JsonRpcProvider(rpc);
