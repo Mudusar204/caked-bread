@@ -248,7 +248,8 @@ const Home = () => {
             onChange={(e) => {
               setValue(e.target.value);
             }}
-            placeholder="0 BNB"
+            min={0.01}
+            placeholder="Enter Min 0.01 BNB"
             type="number"
             className="p-[10px] mt-[30px] max-sm:mt-3 text-right font-[700px] text-[20px] max-sm:text-[14px] text-[#DF8B24] w-[100%]  border-[3px] border-[#DF8B24] py-[10px] bg-[#FDF8DF] "
           />
@@ -288,8 +289,11 @@ const Home = () => {
             })}
           </div>
           <button
+            disabled={+value < 0.01}
             onClick={() => CakedBreadHandler()}
-            className="uppercase mt-[30px] max-sm:mt-3 text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 "
+            className={`${
+              +value < 0.01 ? "cursor-not-allowed" : "cursor-pointer"
+            } uppercase mt-[30px] max-sm:mt-3 text-center font-[700px] text-[20px] max-sm:text-[14px] text-[#FDF8DFBA] w-[100%]   py-[10px] rounded-[50px] bg-[#523129B5]/70 hover:bg-[#523129B5]/60 `}
           >
             Caked Bread
           </button>
