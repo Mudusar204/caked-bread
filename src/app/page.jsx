@@ -263,7 +263,7 @@ const Home = () => {
           />
           <div
             className={`${
-              showCalculatedBeans ? "" : "hidden"
+              showCalculatedBeans && +value >= 0.01 ? "" : "hidden"
             } uppercase mt-5 max-sm:mt-3  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]`}
           >
             <p>You will Get</p>
