@@ -119,7 +119,7 @@ const Page = () => {
       >
         Feel free to reach out at any time.
       </p>
-      <div className="bg-[#523129B5]/70  text-[#FDF8DF] rounded-lg p-5 mt-8 max-sm:mt-5 max-sm:p-3">
+      <div className="bg-[#523129B5]/70  text-[#FDF8DF] rounded-lg p-5 my-8 max-sm:mt-5 max-sm:p-3">
         <p
           className={
             " text-center font-[400px] text-[24px] leading-[32px] mt-[10px] mb-[20px] max-sm:text-[18px]"

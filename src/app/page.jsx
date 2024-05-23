@@ -66,20 +66,28 @@ const Home = () => {
 
       let myCakesValue = Math.floor(+myCakes.toString() / 1080000);
       setReBake(myCakesValue.toString());
+      // lastHatch
+      let lastHatch = await Contract.lastHatch(address);
       // rewards
       let formatValue = myCakes.toString();
-      console.log(formatValue, "formatValue-=--=-=--=");
+      console.log(formatValue, "formatValue for reward getting-=--=-=--=");
       let rewardBreads = await Contract.calculateCakesSell(+formatValue);
       setRewards((+formatEther(rewardBreads)).toFixed(5));
 
-      // lastHatch
-      let lastHatch = await Contract.lastHatch(address);
-      setReBakeTime(lastHatch.toString());
-      console.log(lastHatch.toString(), "lastHatch=-=--==-", Date.now());
+      // reBakeTime
       const milliseconds = 60 * 60 * 1000;
       const currentTimestamp = +lastHatch.toString();
-      const futureTimestamp = currentTimestamp + milliseconds;
-      if (futureTimestamp > Date.now() && +rewards > 0.001) {
+      const futureTimestamp = currentTimestamp * 1000 + milliseconds;
+      console.log(
+        futureTimestamp > Date.now(),
+        +formatEther(rewardBreads) > 0.0000001,
+        "rebake check-=-="
+      );
+      if (
+        futureTimestamp > Date.now() &&
+        +formatEther(rewardBreads) > 0.0000001
+      ) {
+        //0.001 line Limit
         console.log("Button is active");
         setDisReBake(false);
       }
@@ -259,7 +267,7 @@ const Home = () => {
             } uppercase mt-5 max-sm:mt-3  flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]`}
           >
             <p>You will Get</p>
-            <p>{CalculatedBeans} BEANS</p>
+            <p>{(+CalculatedBeans).toFixed(0)} Breads</p>
           </div>
           <div className="flex justify-between items-center mt-5 max-sm:mt-3">
             {["25%", "50%", "75%", "100%"].map((item, i) => {
@@ -302,7 +310,7 @@ const Home = () => {
             <p>Your rewards</p>
           </div>
           <div className="mt-5 max-sm:mt-3 flex justify-between items-center text-[#FDF8DF] font-[700px] text-[20px] max-sm:text-[14px] leading-[23px]">
-            <p className="">{reBake} BEANS</p>
+            <p className="">{reBake} BREADS</p>
             <p>{rewards} BNB</p>
           </div>
           <button
@@ -361,7 +369,7 @@ const Home = () => {
           >
             Invite your friends using your link and earn ~5% of any Breads they
             BAKE and 2% of Re-BAKES. Referral Rewards are additional and are not
-            deducted from your friends beans.
+            deducted from your friends Breads.
           </p>
         </div>
         <div className="flex justify-center items-center gap-3 my-[20px]">

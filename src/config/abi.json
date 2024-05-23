@@ -1,5 +1,12 @@
 [
-  { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "adr1", "type": "address" },
+      { "internalType": "address", "name": "adr2", "type": "address" }
+    ],
+    "stateMutability": "payable",
+    "type": "constructor"
+  },
   {
     "anonymous": false,
     "inputs": [
@@ -124,16 +131,6 @@
     "name": "owner",
     "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "address", "name": "adr1", "type": "address" },
-      { "internalType": "address", "name": "adr2", "type": "address" }
-    ],
-    "name": "pipMarket",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {

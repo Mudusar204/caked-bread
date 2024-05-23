@@ -20,7 +20,7 @@ const Navbar = () => {
         height={145}
         width={145}
         className="max-sm:w-[68px] cursor-pointer max-sm:h-[68px] max-lg:w-[100px] max-lg:h-[100px]"
-        src={"/logo.svg"}
+        src={"/logo.png"}
         alt="logo"
       ></Image>
       <button
