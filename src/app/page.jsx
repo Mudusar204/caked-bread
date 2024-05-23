@@ -79,12 +79,17 @@ const Home = () => {
       const currentTimestamp = +lastHatch.toString();
       const futureTimestamp = currentTimestamp * 1000 + milliseconds;
       console.log(
-        futureTimestamp > Date.now(),
+        futureTimestamp < Date.now(),
         +formatEther(rewardBreads) > 0.0000001,
-        "rebake check-=-="
+        "rebake check-=-=",
+        futureTimestamp,
+        "-",
+        Date.now(),
+        "value-=-",
+        formatEther(rewardBreads)
       );
       if (
-        futureTimestamp > Date.now() &&
+        futureTimestamp < Date.now() &&
         +formatEther(rewardBreads) > 0.0000001
       ) {
         //0.001 line Limit
