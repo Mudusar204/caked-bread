@@ -42,15 +42,6 @@
   },
   {
     "inputs": [
-      { "internalType": "uint256", "name": "cakes", "type": "uint256" }
-    ],
-    "name": "calculateCakesSell",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
       { "internalType": "uint256", "name": "eth", "type": "uint256" },
       {
         "internalType": "uint256",
@@ -58,14 +49,23 @@
         "type": "uint256"
       }
     ],
-    "name": "calculateEggBuy",
+    "name": "calculateCakeBuy",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [{ "internalType": "uint256", "name": "eth", "type": "uint256" }],
-    "name": "calculateEggBuySimple",
+    "name": "calculateCakeBuySimple",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "cakes", "type": "uint256" }
+    ],
+    "name": "calculateCakesSell",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"

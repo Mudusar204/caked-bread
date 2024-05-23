@@ -207,7 +207,7 @@ const Home = () => {
     try {
       console.log("funcion challa");
       let formatValue = parseUnits(value.toString());
-      let beans = await Contract.calculateEggBuySimple(formatValue.toString());
+      let beans = await Contract.calculateCakeBuySimple(formatValue.toString());
       let yourBeans = (+beans.toString() * 0.92) / 1080000;
       setCalculatedBeans(yourBeans.toFixed(6));
       setShowCalculatedBeans(true);
