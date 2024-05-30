@@ -25,8 +25,7 @@ const Page = () => {
     },
     {
       title: "What is the minimum deposit?",
-      content:
-        "There are no minimum deposits. However, as per the recommendation of Audit, we encourage you to deposit atleast 0.01 bnb.",
+      content: " Minimum deposit is 0.01 BNB. ",
     },
     {
       title: "What is the maximum deposit?",
@@ -49,9 +48,9 @@ const Page = () => {
         "The value of bread fluctuates based on TVL and inflationary rates. Bread do not have a set price      ",
     },
     {
-      title: "What happens when I press re-bake button?",
+      title: "What happens when I press re-cake button?",
       content:
-        "Re-baking compounds your rewards, increasing your breads over time. There is a 60-minute cool down for re-baking. As per the recommendation of Audit, we have used Front End to make sure that the user's Rebakes give them at least 1 Bread.",
+        "Re-caking compounds your rewards, increasing your breads over time. There is a 60-minute cool down for re-caking. As per the recommendation of Audit, we have used Front End to make sure that the user's ReCakes give them at least 1 Bread.",
     },
     {
       title: "What happens when I press eat breads?",
@@ -66,17 +65,17 @@ const Page = () => {
     {
       title: "Do bread amount decrease when you eat?",
       content:
-        "No, eating does not decrease users bread count. Only new deposits or re-bakes increase bread holdings.       ",
+        "No, eating does not decrease users bread count. Only new deposits or re-cakes increase bread holdings.       ",
     },
     {
       title: "What is the teams suggested strategy?",
       content:
-        "Re-bake multiple times a week and eat once a week to maintain balance and maximize rewards. ",
+        "re-cake multiple times a week and eat once a week to maintain balance and maximize rewards. ",
     },
     {
-      title: "What happens if I do not actively re-bake or eat?",
+      title: "What happens if I do not actively re-cake or eat?",
       content:
-        "Keeping your breads idle will lead to inflation of bread prices, reducing your rewards over time. Active re-baking or eating is crucial to maintain value and rewards.",
+        "Keeping your breads idle will lead to inflation of bread prices, reducing your rewards over time. Active re-caking or eating is crucial to maintain value and rewards.",
     },
     {
       title: "Is it too late to participate in the project?",
@@ -91,7 +90,7 @@ const Page = () => {
     {
       title: "What are the anti-whale mechanisms in place?",
       content:
-        "Anti-whale mechanics include cool down on re-baking, reduced referral rewards and inflationary mechanics.",
+        "Anti-whale mechanics include cool down on re-caking, reduced referral rewards and inflationary mechanics.",
     },
     {
       title: "How do I know Caked Bread is safe?",
